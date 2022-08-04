@@ -15,7 +15,6 @@ class CreateHorariosTable extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->unsignedSmallInteger('dia');
             $table->boolean('active');
