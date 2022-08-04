@@ -89,9 +89,9 @@ class DentistaController extends Controller
     {
         $dentista = User::Dentistas()->findOrFail($id);
 
-        // $especialidades= ModeloEspecialidades::all();
-        // $especialidad_id=$dentista->especialidades()->pluck('especialidades.id');
-        return view('dentistas.editar', compact('dentista','especialidades'));
+         $especialidades= Speciality::all();
+         $especialidad_id=$dentista->especialidades()->pluck('specialities.id');
+        return view('dentistas.editar', compact('dentista','especialidades','especialidad_id'));
     }
 
     /**
@@ -132,7 +132,7 @@ class DentistaController extends Controller
 
         $user->fill($datos);
         $user->save();
-        // $user->especialidades()->sync($request->input('especialidades'));
+        $user->especialidades()->sync($request->input('especialidades'));
         $notificacion = 'La informacion del dentista se actualizo correctamente';
         return redirect('/dentistas')->with(compact('notificacion'));
     }

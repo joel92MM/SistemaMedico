@@ -35,6 +35,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'pivot'
     ];
 
     /**
@@ -44,7 +45,7 @@ class User extends Authenticatable
      */
     public function especialidades(){
         // return $this->belongsToMany(ModeloEspecialidades::class,'specialty_user');
-        return $this->belongsToMany(Speciality::class,'specialty_user');
+        return $this->belongsToMany(Speciality::class,'specialty_user')->withTimestamps();
 
     }
     /**

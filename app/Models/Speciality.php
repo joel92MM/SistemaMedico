@@ -10,6 +10,6 @@ class Speciality extends Model
     use HasFactory;
     public function users(){
         // relacion de muchos a muchos, un dentista puede tener muchas especialidades
-        return $this->belongsToMany(User::class,'specialty_user');//->withTimestamps();
+        return $this->belongsToMany(User::class,'specialty_user')->withTimestamps();
     }
 }

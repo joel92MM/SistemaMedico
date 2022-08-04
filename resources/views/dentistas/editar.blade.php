@@ -2,10 +2,10 @@
 use Illuminate\Support\Str;
 ?>
 @extends('layouts.panel')
-{{-- @section('styles')
+@section('styles')
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-@endsection --}}
+@endsection
 @section('content')
     <div class="card shadow">
         <div class="card-header border-0">
@@ -39,7 +39,7 @@ use Illuminate\Support\Str;
                     <input type="text" name="name"class="form-control" placeholder="Introduce el nombre del dentista"
                         required value="{{ old('name', $dentista->name) }}" />
                 </div>
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label for="especialidades">Especialidades</label>
                     <select name="especialidades[]" id="especialidades" class="form-control selectpicker"
                         data-style="btn-primary" title="Seleccionar especialidades" multiple required>
@@ -47,7 +47,7 @@ use Illuminate\Support\Str;
                             <option value="{{ $datosEspecialidad->id }}">{{ $datosEspecialidad->name }}</option>
                         @endforeach
                     </select>
-                </div> --}}
+                </div>
                 <div class="form-group">
                     <label for="email"> Email</label>
                     <input type="email" name="email" class="form-control" placeholder="Introduce el email del dentista"
@@ -81,11 +81,11 @@ use Illuminate\Support\Str;
         </div>
     </div>
 @endsection
-{{-- @section('scripts')
+@section('scripts')
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
         $(document).ready(()=> {});
         $('#especialidades').selectpicker('val',@json($especialidad_id) );
     </script>
-@endsection --}}
+@endsection

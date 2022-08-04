@@ -103,7 +103,14 @@ Route::middleware(['auth', 'dentista'])->group(function () {
     Route::post('/horario', [HorarioController::class, 'store']);
 });
 
-//ruta para reservar citas
-Route::get('/reservarcita/create', [CitaController::class, 'crear']);
-Route::post('/miscitas', [CitaController::class, 'store']);
+Route::middleware('auth')->group(function () {
+   //ruta para reservar citas
+    Route::get('/reservarcita/create', [CitaController::class, 'crear']);
+    Route::post('/miscitas', [CitaController::class, 'store']);
+    //json
+    Route::get('/especialidades/{objetoEspecialidades}/dentistas', [SpecialityController::class, 'dentista']);
+    //json
+    Route::get('/horario/horas', [HorarioController::class, 'hours']);
+});
+
 
