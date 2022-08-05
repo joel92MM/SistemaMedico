@@ -1,5 +1,5 @@
 let $dentista, $date, $specialty, iRadio;
-let hoursMorning, hoursAfternoon, $titleMorning, $titleAfternoon;
+let $hoursMorning, $hoursAfternoon, $titleMorning, $titleAfternoon;
 
 const titleMorning =`En la mañana`;
 
@@ -8,9 +8,11 @@ const titleAfternoon =`En la tarde`;
 const noHours =`<h5 class="text-danger">No hay horas disponibles en este momento</h5>`
 
 $(function () {
-    $specialty = $('#dentista');
+    $specialty = $('#speciality_id');
     $dentista = $('#dentista');
-    $date = $('#date')
+    console.log($dentista);
+    $date = $('#date');
+    console.log($date);
     $titleMorning = $('#titleMorning');
     $hoursMorning = $('#hoursMorning');
     $titleAfternoon = $('#titleAfternoon');
@@ -18,17 +20,26 @@ $(function () {
 
     $specialty.change(() => {
         const specialtyId = $specialty.val();
-        const url = '/especialidades/{$specialtyId}/dentistas';
+        console.log(specialtyId);
+        const url = `/especialidades/${specialtyId}/dentistas`;
+        console.log(url);
         $.getJSON(url, onDentistaLoaded);
+        console.log('dsdssdsdsd ',url);
     })
     $dentista.change(loadHours);
+    console.log($dentista);
     $date.change(loadHours);
+    console.log($date);
 });
 
-function onDentistaLoaded(dentista) {
+function onDentistaLoaded(dentistas) {
+   //console.log(dentista);
     let htmlOptions = '';
-    dentista.forEach(dentista => {
-        htmlOptions += `<option value="{$dentista.id}">${dentista.name}</option>`
+
+    dentistas.forEach(dentista => {
+
+        htmlOptions += `<option value="${dentista.id}">${dentista.name}</option>`
+
     });
     $dentista.html(htmlOptions);
     loadHours();
@@ -37,11 +48,14 @@ function onDentistaLoaded(dentista) {
 function loadHours() {
     const selectedDate = $date.val();
     const dentistaID = $dentista.val();
+    console.log(selectedDate);
+    console.log(dentistaID);
     const url = `/horario/horas?date=${selectedDate}&dentista_id=${dentistaID}`;
     $.getJSON(url, displayHours);
 }
 
 function displayHours(data) {
+    //console.log(data);
     let htmlHoursM = '',
         htmlHoursA = '';
 
@@ -63,26 +77,23 @@ function displayHours(data) {
         afternoon_intervalos.forEach(intervalo => {
             htmlHoursA += getRadioIntervaloHTML(intervalo);
         });
-
-        $hoursMorning.html(htmlHoursM);
-        $hoursAfternoon.html(htmlHoursA);
-        $titleMorning.html(titleMorning);
-        $titleAfternoon.html(titleAfternoon);
     }
-
-    if(!htmlHoursA != "") {
+   if(!htmlHoursA != "") {
         htmlHoursA+=noHours;
     }
+    $hoursMorning.html(htmlHoursM);
+    $hoursAfternoon.html(htmlHoursA);
+    $titleMorning.html(titleMorning);
+    $titleAfternoon.html(titleAfternoon);
 
+}
+function getRadioIntervaloHTML(intervalo) {
+    const text = `${intervalo.start} - ${intervalo.end}`;
 
-    function getRadioIntervaloHTML(intervalo) {
-        const text = `${intervalo.start} - ${intervalo.end}`;
-
-        return `<div class="custom-control custom-radio mb-3">
-        <input type="radio" name="interval" id="interval${iRadio}" class="custom-control-input" value="${text}">
-        <label for="interval${iRadio++}" class="custom-control-label">
+    return `<div class="custom-control custom-radio mb-3">
+            <input type="radio" name="interval" id="interval${iRadio}" class="custom-control-input" value="${text}">
+            <label for="interval${iRadio++}" class="custom-control-label">
             ${text}
-        </label>
-    </div>`;
-    }
+            </label>
+            </div>`;
 }

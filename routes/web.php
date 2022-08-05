@@ -108,9 +108,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservarcita/create', [CitaController::class, 'crear']);
     Route::post('/miscitas', [CitaController::class, 'store']);
     //json
-    Route::get('/especialidades/{objetoEspecialidades}/dentistas', [SpecialityController::class, 'dentista']);
+    Route::get('/especialidades/{objetoEspecialidades}/dentistas', [App\Http\Controllers\Api\SpecialityController::class, 'dentistas']);
     //json
-    Route::get('/horario/horas', [HorarioController::class, 'hours']);
+    Route::get('/horario/horas', [App\Http\Controllers\Api\HorarioController::class, 'hours']);
 });
 
 

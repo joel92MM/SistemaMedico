@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Dentista;
 
 use Carbon\Carbon;
-use App\Models\Horarios;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,7 +21,7 @@ class HorarioController extends Controller{
     public function edit(){
 
         // si existe un horario se muestra el horario y si no se muestra el de por defecto
-         $horarios= Horarios::where('user_id',auth()->id())->get();
+         $horarios= Horario::where('user_id',auth()->id())->get();
          if(count($horarios)>0){
             $horarios->map(function($horarios){
                 $horarios->morning_start = (new Carbon($horarios->morning_start))->format('g:i A');
@@ -32,7 +32,7 @@ class HorarioController extends Controller{
         }else{
             $horarios =collect();
             for ($i=0; $i < 6; $i++) {
-                $horarios->push(new Horarios());
+                $horarios->push(new Horario());
             }
         }
 
@@ -59,7 +59,7 @@ class HorarioController extends Controller{
             if($afternoon_start[$i]> $afternoon_end[$i]){
                 $errors [] ='El intervalo de las horas del turno de tarde no coincide, en el día  '.$this->days[$i].'.';
             }
-           Horarios::updateOrCreate(
+           Horario::updateOrCreate(
                 // estos atributos que vamos a definir a continuacion nos van a permitir buscar en la tabla para hacer cambios
                 [
                     'dia'=>$i,

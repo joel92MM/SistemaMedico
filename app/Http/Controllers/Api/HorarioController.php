@@ -14,7 +14,7 @@ class HorarioController extends Controller{
     public function hours(Request $request){
         $rules =[
             'date'=>'required|date_format:"Y-m-d"',
-            'dentista_id'=>'required|exists:users,id"'
+            'dentista_id'=>'required|exists:users,id'
         ];
         $this->validate($request, $rules);
 
@@ -23,17 +23,20 @@ class HorarioController extends Controller{
         // para saber los dias de la semana, hacemos lo siguiente
         $i=$dateCarbon->dayOfWeek;
 
+
         // a continuacion arreglamos el formato ya que carbon trae un formato diferente al establecido
         $day =($i==0 ? 6 : $i-1);
         $dentistaID=$request->input('dentista_id');
+        dd($dentistaID);
 
         $horario =Horario::where('active',true)
-        ->where ('day',$day)
+        ->where ('dia',$day)
         ->where ('user_id',$dentistaID)
         ->first([
             'morning_start','morning_end',
             'afternoon_start','afternoon_end',
         ]);
+        dd($horario);
         if(!$horario){
             return[];
         }
@@ -47,6 +50,8 @@ class HorarioController extends Controller{
         $data =[];
         $data['morning']=$morningIntervalos;
         $data['afternoon']=$afternoonIntervalos;
+
+        return $data;
     }
     private function getIntervalos($start, $end){
         $start = new Carbon($start);

@@ -22,9 +22,9 @@ class CreateSpecialtyUserTable extends Migration
            ->on('users');
            // ->onDelete('cascade');
            // //especialidad del dentista
-            $table->unsignedBigInteger('specialty_id');
+            $table->unsignedBigInteger('speciality_id');
 
-            $table->foreign('specialty_id')
+            $table->foreign('speciality_id')
             ->references('id')
            ->on('specialities');
            // ->onDelete('cascade');

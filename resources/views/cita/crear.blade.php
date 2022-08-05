@@ -29,8 +29,9 @@
                 @csrf
                 <div class="form-group">
                     <label for="especialidad"> Especialidad</label>
-                    <select name="" id="" class="form-control">
+                    <select name="speciality_id" id="speciality_id" class="form-control">
                         {{-- cargaremos todas las especialidades --}}
+                        <option value="">Seleccionar especialidad</option>
                         @foreach ($especialidades as $especialidad)
                             <option value="{{ $especialidad->id }}">{{ $especialidad->name }}</option>
                         @endforeach
@@ -38,7 +39,9 @@
                 </div>
                 <div class="form-group">
                     <label for="dentista">Dentista</label>
-                    <select name="dentista_id" id="dentista" class="form-control"></select>
+                    <select name="dentista_id" id="dentista" class="form-control">
+
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="direccionDentista"> Fecha</label>
@@ -48,9 +51,15 @@
                                 <i class="ni ni-calendar-grid-58"></i>
                             </span>
                         </div>
-                        <input type="text" id="date" class="form-control datepicker"
-                            placeholder="selecciona la fecha" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd"
-                            data-date-start-date="{{ date('Y-m-d') }}" data-date-end-date="+30d">
+                        <input
+                        type="text"
+                        id="date"
+                        class="form-control datepicker"
+                        placeholder="selecciona la fecha"
+                        value="{{ date('Y-m-d') }}"
+                        data-date-format="yyyy-mm-dd"
+                        data-date-start-date="{{ date('Y-m-d') }}"
+                        data-date-end-date="+30d">
                     </div>
                 </div>
 
@@ -83,5 +92,5 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('js/cita/crear') }}"></script>
+    <script src="{{ asset('js/cita/crear.js') }}"></script>
 @endsection
