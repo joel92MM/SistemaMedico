@@ -56,44 +56,44 @@ function loadHours() {
 
 function displayHours(data) {
     //console.log(data);
-    let htmlHoursM = '',
-        htmlHoursA = '';
+//     let htmlHoursM = '',
+//         htmlHoursA = '';
 
-    iRadio = 0;
+//     iRadio = 0;
 
-    if (data.morning) {
-        const morning_intervalos = data.morning;
-        morning_intervalos.forEach(intervalo => {
-            htmlHoursM += getRadioIntervaloHTML(intervalo);
-        });
-    }
+//     if (data.morning) {
+//         const morning_intervalos = data.morning;
+//         morning_intervalos.forEach(intervalo => {
+//             htmlHoursM += getRadioIntervaloHTML(intervalo);
+//         });
+//     }
 
-    if(!htmlHoursM != "") {
-        htmlHoursM+=noHours;
-    }
+//     if(!htmlHoursM != "") {
+//         htmlHoursM+=noHours;
+//     }
 
-    if (data.afternoon) {
-        const afternoon_intervalos = data.afternoon;
-        afternoon_intervalos.forEach(intervalo => {
-            htmlHoursA += getRadioIntervaloHTML(intervalo);
-        });
-    }
-   if(!htmlHoursA != "") {
-        htmlHoursA+=noHours;
-    }
-    $hoursMorning.html(htmlHoursM);
-    $hoursAfternoon.html(htmlHoursA);
-    $titleMorning.html(titleMorning);
-    $titleAfternoon.html(titleAfternoon);
+//     if (data.afternoon) {
+//         const afternoon_intervalos = data.afternoon;
+//         afternoon_intervalos.forEach(intervalo => {
+//             htmlHoursA += getRadioIntervaloHTML(intervalo);
+//         });
+//     }
+//    if(!htmlHoursA != "") {
+//         htmlHoursA+=noHours;
+//     }
+//     $hoursMorning.html(htmlHoursM);
+//     $hoursAfternoon.html(htmlHoursA);
+//     $titleMorning.html(titleMorning);
+//     $titleAfternoon.html(titleAfternoon);
 
-}
-function getRadioIntervaloHTML(intervalo) {
-    const text = `${intervalo.start} - ${intervalo.end}`;
+ }
+// function getRadioIntervaloHTML(intervalo) {
+//     const text = `${intervalo.start} - ${intervalo.end}`;
 
-    return `<div class="custom-control custom-radio mb-3">
-            <input type="radio" name="interval" id="interval${iRadio}" class="custom-control-input" value="${text}">
-            <label for="interval${iRadio++}" class="custom-control-label">
-            ${text}
-            </label>
-            </div>`;
-}
+//     return `<div class="custom-control custom-radio mb-3">
+//             <input type="radio" name="interval" id="interval${iRadio}" class="custom-control-input" value="${text}">
+//             <label for="interval${iRadio++}" class="custom-control-label">
+//             ${text}
+//             </label>
+//             </div>`;
+// }

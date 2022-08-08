@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpecialtyUserTable extends Migration
+class CreateSpecialityUserTable extends Migration
 { /**
     * Run the migrations.
     *
     * @return void
     */
    public function up(){
-       Schema::create('specialty_user', function (Blueprint $table) {
+       Schema::create('speciality_user', function (Blueprint $table) {
            // $table->engine = 'InnoDB';
             $table->bigIncrements('id');
            // //dentista
@@ -19,15 +19,15 @@ class CreateSpecialtyUserTable extends Migration
 
            $table->foreign('user_id')
             ->references('id')
-           ->on('users');
-           // ->onDelete('cascade');
+           ->on('users')
+            ->onDelete('cascade');
            // //especialidad del dentista
             $table->unsignedBigInteger('speciality_id');
 
             $table->foreign('speciality_id')
             ->references('id')
-           ->on('specialities');
-           // ->onDelete('cascade');
+           ->on('specialities')
+            ->onDelete('cascade');
 
         //    $table->foreignId('user_id')->constrained('users')
         //    ->onUpdate('cascade')
@@ -54,7 +54,7 @@ class CreateSpecialtyUserTable extends Migration
     //        $table->dropForeign(['user_id']);
     //        $table->dropForeign(['specialty_id']);
     //    });
-       Schema::dropIfExists('specialty_user');
+       Schema::dropIfExists('speciality_user');
        // DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
     }

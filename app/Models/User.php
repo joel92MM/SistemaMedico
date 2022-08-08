@@ -45,7 +45,7 @@ class User extends Authenticatable
      */
     public function especialidades(){
         // return $this->belongsToMany(ModeloEspecialidades::class,'specialty_user');
-        return $this->belongsToMany(Speciality::class,'specialty_user')->withTimestamps();
+        return $this->belongsToMany(Speciality::class)->withTimestamps();
 
     }
     /**

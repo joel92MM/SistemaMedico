@@ -60,7 +60,7 @@ use Illuminate\Support\Str;
                 </div>
                 <div class="form-group">
                     <label for="telefonoDentista"> Telefono</label>
-                    <input type="ttelefonoDentista" name="telefonoDentista" class="form-control"
+                    <input type="text" name="telefonoDentista" class="form-control"
                         placeholder="Introduce el telefono del dentista"
                         value="{{ old('telefonoDentista', $dentista->telefonoDentista) }}" />
                 </div>
@@ -68,7 +68,7 @@ use Illuminate\Support\Str;
                     <label for="direccionDentista"> Direccion</label>
                     <input type="text" name="direccionDentista" class="form-control"
                         placeholder="Introduce la direccion del dentista"
-                        value="{{ old('direccionoDentista', $dentista->direccionDentista) }}" />
+                        value="{{ old('direccionDentista', $dentista->direccionDentista) }}" />
                 </div>
                 <div class="form-group">
                     <label for="password"> Contraseña</label>
@@ -85,7 +85,11 @@ use Illuminate\Support\Str;
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
-        $(document).ready(()=> {});
-        $('#especialidades').selectpicker('val',@json($especialidad_id) );
+        $(document).ready(()=> {
+            $('#especialidades').selectpicker('val',@json($especialidad_id) );
+
+        });
+
+
     </script>
 @endsection

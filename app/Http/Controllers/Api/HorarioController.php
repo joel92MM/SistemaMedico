@@ -12,6 +12,7 @@ class HorarioController extends Controller{
 
 
     public function hours(Request $request){
+       // dd($request);
         $rules =[
             'date'=>'required|date_format:"Y-m-d"',
             'dentista_id'=>'required|exists:users,id'
@@ -27,7 +28,7 @@ class HorarioController extends Controller{
         // a continuacion arreglamos el formato ya que carbon trae un formato diferente al establecido
         $day =($i==0 ? 6 : $i-1);
         $dentistaID=$request->input('dentista_id');
-        dd($dentistaID);
+        //dd($dentistaID);
 
         $horario =Horario::where('active',true)
         ->where ('dia',$day)
@@ -36,7 +37,7 @@ class HorarioController extends Controller{
             'morning_start','morning_end',
             'afternoon_start','afternoon_end',
         ]);
-        dd($horario);
+        //dd($horario);
         if(!$horario){
             return[];
         }

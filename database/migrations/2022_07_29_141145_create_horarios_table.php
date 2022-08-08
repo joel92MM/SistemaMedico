@@ -18,10 +18,10 @@ class CreateHorariosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedSmallInteger('dia');
             $table->boolean('active');
-            $table->time('morning_start');
-            $table->time('morning_end');
-            $table->time('afternoon_start');
-            $table->time('afternoon_end');
+            $table->string('morning_start');
+            $table->string('morning_end');
+            $table->string('afternoon_start');
+            $table->string('afternoon_end');
             // aqui va la clave foranea
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

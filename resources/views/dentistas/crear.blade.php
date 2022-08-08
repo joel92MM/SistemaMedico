@@ -59,7 +59,7 @@ use Illuminate\Support\Str;
                 </div>
                 <div class="form-group">
                     <label for="password"> Contraseña</label>
-                    <input type="text" name="password" class="form-control"
+                    <input type="password" name="password" class="form-control"
                         placeholder="Introduce la contraseña del dentista" value="{{ old('password', Str::random(8)) }}" />
                 </div>
                 <div class="form-group">
