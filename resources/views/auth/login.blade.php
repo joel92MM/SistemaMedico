@@ -1,9 +1,5 @@
 @extends('layouts.formulario')
 
-@section('bienvenida')
-
-@endsection
-
 @section('content')
  <!-- Page content -->
  <div class="container mt--8 pb-5">

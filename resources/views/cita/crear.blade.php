@@ -40,7 +40,10 @@
                 <div class="form-group">
                     <label for="dentista">Dentista</label>
                     <select name="dentista_id" id="dentista" class="form-control">
-
+                        {{-- <option value="">Seleccionar especialidad</option>
+                        @foreach ($especialidades as $especialidad)
+                            <option value="{{ $especialidad->id }}">{{ $especialidad->name }}</option>
+                        @endforeach --}}
                     </select>
                 </div>
                 <div class="form-group">

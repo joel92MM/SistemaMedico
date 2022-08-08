@@ -10,9 +10,8 @@ const noHours =`<h5 class="text-danger">No hay horas disponibles en este momento
 $(function () {
     $specialty = $('#speciality_id');
     $dentista = $('#dentista');
-    console.log($dentista);
     $date = $('#date');
-    console.log($date);
+
     $titleMorning = $('#titleMorning');
     $hoursMorning = $('#hoursMorning');
     $titleAfternoon = $('#titleAfternoon');
@@ -20,16 +19,13 @@ $(function () {
 
     $specialty.change(() => {
         const specialtyId = $specialty.val();
-        console.log(specialtyId);
         const url = `/especialidades/${specialtyId}/dentistas`;
-        console.log(url);
         $.getJSON(url, onDentistaLoaded);
-        console.log('dsdssdsdsd ',url);
-    })
+
+    });
+
     $dentista.change(loadHours);
-    console.log($dentista);
     $date.change(loadHours);
-    console.log($date);
 });
 
 function onDentistaLoaded(dentistas) {
@@ -37,63 +33,64 @@ function onDentistaLoaded(dentistas) {
     let htmlOptions = '';
 
     dentistas.forEach(dentista => {
+        console.log(dentista);
 
         htmlOptions += `<option value="${dentista.id}">${dentista.name}</option>`
 
     });
     $dentista.html(htmlOptions);
-    loadHours();
+   loadHours();
 }
 
 function loadHours() {
     const selectedDate = $date.val();
     const dentistaID = $dentista.val();
-    console.log(selectedDate);
+    console.log('aas',selectedDate);
     console.log(dentistaID);
-    const url = `/horario/horas?date=${selectedDate}&dentista_id=${dentistaID}`;
+    const url = `/horario/horas?date=${selectedDate}&&dentista_id=${dentistaID}`;
     $.getJSON(url, displayHours);
 }
 
 function displayHours(data) {
-    //console.log(data);
-//     let htmlHoursM = '',
-//         htmlHoursA = '';
+    console.log(data);
+    let htmlHoursM = '',
+        htmlHoursA = '';
 
-//     iRadio = 0;
+    iRadio = 0;
 
-//     if (data.morning) {
-//         const morning_intervalos = data.morning;
-//         morning_intervalos.forEach(intervalo => {
-//             htmlHoursM += getRadioIntervaloHTML(intervalo);
-//         });
-//     }
+    if (data.morning) {
+        const morning_intervalos = data.morning;
+        morning_intervalos.forEach(intervalo => {
+            htmlHoursM += getRadioIntervaloHTML(intervalo);
+        });
+    }
 
-//     if(!htmlHoursM != "") {
-//         htmlHoursM+=noHours;
-//     }
+    if(!htmlHoursM != "") {
+        htmlHoursM+=noHours;
+    }
 
-//     if (data.afternoon) {
-//         const afternoon_intervalos = data.afternoon;
-//         afternoon_intervalos.forEach(intervalo => {
-//             htmlHoursA += getRadioIntervaloHTML(intervalo);
-//         });
-//     }
-//    if(!htmlHoursA != "") {
-//         htmlHoursA+=noHours;
-//     }
-//     $hoursMorning.html(htmlHoursM);
-//     $hoursAfternoon.html(htmlHoursA);
-//     $titleMorning.html(titleMorning);
-//     $titleAfternoon.html(titleAfternoon);
+    if (data.afternoon) {
+        const afternoon_intervalos = data.afternoon;
+        afternoon_intervalos.forEach(intervalo => {
+            htmlHoursA += getRadioIntervaloHTML(intervalo);
+        });
+    }
+   if(!htmlHoursA != "") {
+        htmlHoursA+=noHours;
+    }
+    $hoursMorning.html(htmlHoursM);
+    $hoursAfternoon.html(htmlHoursA);
+    $titleMorning.html(titleMorning);
+    $titleAfternoon.html(titleAfternoon);
 
  }
-// function getRadioIntervaloHTML(intervalo) {
-//     const text = `${intervalo.start} - ${intervalo.end}`;
+function getRadioIntervaloHTML(intervalo) {
+    const text = `${intervalo.start} - ${intervalo.end}`;
 
-//     return `<div class="custom-control custom-radio mb-3">
-//             <input type="radio" name="interval" id="interval${iRadio}" class="custom-control-input" value="${text}">
-//             <label for="interval${iRadio++}" class="custom-control-label">
-//             ${text}
-//             </label>
-//             </div>`;
-// }
+    return `<div class="custom-control custom-radio mb-3">
+            <input type="radio" name="interval" id="interval${iRadio}" class="custom-control-input" value="${text}">
+            <label for="interval${iRadio++}" class="custom-control-label">
+            ${text}
+            </label>
+            </div>`;
+}
